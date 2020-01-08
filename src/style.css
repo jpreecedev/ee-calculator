@@ -1,0 +1,72 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 16px;
+}
+
+:root {
+  font-size: 16px;
+}
+
+input {
+  margin-bottom: 8px;
+  width: 100%;
+  padding: 24px 16px;
+  background-color: #dff9ff;
+  border: none;
+}
+
+input,
+button {
+  font-size: inherit;
+}
+
+button {
+  width: 72px;
+  height: 64px;
+  color: #000000;
+  background: transparent;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: visible;
+  line-height: normal;
+  padding: 8px;
+  margin: 1px;
+}
+
+.logo {
+  width: 100px;
+  padding-top: 16px;
+  padding-bottom: 8px;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  display: inline-block;
+  background-color: #1795d4;
+}
+
+.row {
+  display: flex;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.blink {
+  animation: blink-animation 100ms;
+}
+
+@keyframes blink-animation {
+  to {
+    color: #fff;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    color: initial;
+  }
+}
