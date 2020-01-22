@@ -57,5 +57,13 @@ window.addEventListener("click", e => {
   } else if (textContent === "=") {
     displayInput.value = calculate(first, second, selectedOperator);
     clear();
+  } else if (textContent === "AC") {
+    clear();
+    displayInput.value = "";
+  } else if (textContent === ".") {
+    const endsWithDecimal = displayInput.value.endsWith(".");
+    if (!endsWithDecimal) {
+      displayInput.value = displayInput.value + ".";
+    }
   }
 });

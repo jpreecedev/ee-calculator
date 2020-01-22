@@ -7,6 +7,7 @@ const {
   getByDisplayValue,
   queryAllByDisplayValue,
   getByPlaceholderText,
+  getByLabelText,
   fireEvent
 } = require("@testing-library/dom");
 
@@ -117,5 +118,75 @@ describe("Index tests", () => {
     fireEvent.click(getByText(document.body, "="));
 
     getByDisplayValue(document.body, "2");
+  });
+
+  it("should clear the display value after clicking 1", async () => {
+    let element = getByLabelText(document.body, "Current calculation value:");
+    expect(element.value).toEqual("");
+
+    fireEvent.click(getByText(document.body, "1"));
+    fireEvent.click(getByText(document.body, "AC"));
+
+    expect(element.value).toEqual("");
+  });
+
+  it("should clear the display value when calculation has been performed", async () => {
+    let element = getByLabelText(document.body, "Current calculation value:");
+    expect(element.value).toEqual("");
+
+    fireEvent.click(getByText(document.body, "2"));
+    fireEvent.click(getByText(document.body, "*"));
+    fireEvent.click(getByText(document.body, "6"));
+    fireEvent.click(getByText(document.body, "AC"));
+
+    expect(element.value).toEqual("");
+  });
+
+  it("should clear the display value when calculation has been performed after clicking equals", async () => {
+    let element = getByLabelText(document.body, "Current calculation value:");
+    expect(element.value).toEqual("");
+
+    fireEvent.click(getByText(document.body, "2"));
+    fireEvent.click(getByText(document.body, "*"));
+    fireEvent.click(getByText(document.body, "6"));
+    fireEvent.click(getByText(document.body, "="));
+    fireEvent.click(getByText(document.body, "AC"));
+
+    expect(element.value).toEqual("");
+  });
+
+  it("should add decimal place to display value", async () => {
+    let element = getByLabelText(document.body, "Current calculation value:");
+    expect(element.value).toEqual("");
+
+    fireEvent.click(getByText(document.body, "1"));
+    fireEvent.click(getByText(document.body, "."));
+    fireEvent.click(getByText(document.body, "2"));
+
+    expect(element.value).toEqual("1.2");
+  });
+
+  it("should not add a second decimal in a row", async () => {
+    let element = getByLabelText(document.body, "Current calculation value:");
+    expect(element.value).toEqual("");
+
+    fireEvent.click(getByText(document.body, "1"));
+    fireEvent.click(getByText(document.body, "."));
+    fireEvent.click(getByText(document.body, "."));
+    fireEvent.click(getByText(document.body, "2"));
+
+    expect(element.value).toEqual("1.2");
+  });
+
+  it("should not add a second decimal in a row", async () => {
+    let element = getByLabelText(document.body, "Current calculation value:");
+    expect(element.value).toEqual("");
+
+    fireEvent.click(getByText(document.body, "1"));
+    fireEvent.click(getByText(document.body, "."));
+    fireEvent.click(getByText(document.body, "."));
+    fireEvent.click(getByText(document.body, "2"));
+
+    expect(element.value).toEqual("1.2");
   });
 });

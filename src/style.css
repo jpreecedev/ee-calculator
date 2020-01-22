@@ -33,6 +33,10 @@ button {
   margin: 1px;
 }
 
+.hidden {
+  display: none;
+}
+
 .logo {
   width: 100px;
   padding-top: 16px;
